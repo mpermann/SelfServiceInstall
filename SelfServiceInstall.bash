@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# The script is for installing an app from Self Service. If app is running, the user will be notified
-# to save unsaved work and quit the app before proceeding. There will be a countdown timer in seconds
-# that will automatically quit the app and start the install if the user doesn't act themselves.
-# Parameter 4 is the name of the app to be installed, parameter 5 is the name of the app process, 
-# parameter 6 is the policy trigger name to install the app, parameter 7 is the countdown timer in 
-# seconds. The script is relatively basic and can't currently kill more than one process or patch 
+# SelfServiceInstall.bash
+# Version: 1.0
+# Created: 06-02-2022 by Michael Permann
+# Modified:
+# Purpose: The script is for installing an app from Self Service. If app is running, the user will be
+# notified to save unsaved work and quit the app before proceeding. There will be a countdown timer in
+# seconds that will automatically quit the app and start the install if the user doesn't act themselves.
+# Parameter 4 is the name of the app to be installed, parameter 5 is the name of the app process,
+# parameter 6 is the policy trigger name to install the app, parameter 7 is the countdown timer in
+# seconds. The script is relatively basic and can't currently kill more than one process or patch
 # more than one app.
-# Version 1.0
-# Created 06-02-2022 by Michael Permann
 
 APP_NAME=$4
 APP_PROCESS_NAME=$5
