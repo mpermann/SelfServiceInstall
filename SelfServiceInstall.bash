@@ -18,11 +18,11 @@ POLICY_TRIGGER_NAME=$6
 TIMER=$7
 CURRENT_USER=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 USER_ID=$(/usr/bin/id -u "$CURRENT_USER")
-LOGO="/Library/Application Support/HeartlandAEA11/Images/HeartlandLogo@512px.png"
+LOGO="/Library/Management/PCC/Images/PCC1Logo@512px.png"
 JAMF_HELPER="/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
 JAMF_BINARY=$(which jamf)
 TITLE="Quit Application"
-DESCRIPTION="Greetings Heartland Area Education Agency Staff
+DESCRIPTION="Greetings PERMANNent Computer Consulting LLC Staff
 
 You are attempting to install $APP_NAME which is already installed and currently running.  Please return to $APP_NAME and save your work and quit the application BEFORE returning here and clicking the \"OK\" button to proceed with the update. 
 
@@ -39,10 +39,10 @@ BUTTON1="OK"
 DEFAULT_BUTTON="1"
 
 # Checking for app deferral plist file. If it exists, delete the file.
-if [ -e "/Library/Application Support/HeartlandAEA11/Reporting/${APP_NAME} Deferral.plist" ]
+if [ -e "/Library/Management/PCC/Reports/${APP_NAME} Deferral.plist" ]
 then
     echo "${APP_NAME} Deferral.plist file exists and needs deleted."
-    /bin/rm -f "/Library/Application Support/HeartlandAEA11/Reporting/${APP_NAME} Deferral.plist"
+    /bin/rm -f "/Library/Management/PCC/Reports/${APP_NAME} Deferral.plist"
 else
     echo "${APP_NAME} Deferral.plist does not exist so proceed with install."
 fi
