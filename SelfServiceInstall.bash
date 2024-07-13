@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # SelfServiceInstall.bash
-# Version: 1.0
+# Version: 1.0.1
 # Created: 06-02-2022 by Michael Permann
-# Modified:
+# Modified: 07-13-2024
 # Purpose: The script is for installing an app from Self Service. If app is running, the user will be
 # notified to save unsaved work and quit the app before proceeding. There will be a countdown timer in
 # seconds that will automatically quit the app and start the install if the user doesn't act themselves.
@@ -18,6 +18,7 @@ POLICY_TRIGGER_NAME=$6
 TIMER=$7
 CURRENT_USER=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 USER_ID=$(/usr/bin/id -u "$CURRENT_USER")
+PLIST_PATH="/Library/Management/PCC/Reports/"
 LOGO="/Library/Management/PCC/Images/PCC1Logo@512px.png"
 JAMF_HELPER="/Library/Application Support/JAMF/bin/jamfHelper.app/Contents/MacOS/jamfHelper"
 JAMF_BINARY=$(which jamf)
@@ -39,10 +40,10 @@ BUTTON1="OK"
 DEFAULT_BUTTON="1"
 
 # Checking for app deferral plist file. If it exists, delete the file.
-if [ -e "/Library/Management/PCC/Reports/${APP_NAME} Deferral.plist" ]
+if [ -e "${PLIST_PATH}${APP_NAME} Deferral.plist" ]
 then
     echo "${APP_NAME} Deferral.plist file exists and needs deleted."
-    /bin/rm -f "/Library/Management/PCC/Reports/${APP_NAME} Deferral.plist"
+    /bin/rm -f "${PLIST_PATH}${APP_NAME} Deferral.plist"
 else
     echo "${APP_NAME} Deferral.plist does not exist so proceed with install."
 fi
